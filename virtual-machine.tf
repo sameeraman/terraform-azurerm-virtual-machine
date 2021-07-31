@@ -1,5 +1,3 @@
-
-
 resource "azurerm_network_interface" "nic1" {
   name                = "${var.virtual_machine_name}-nic1"
   location            = var.location
