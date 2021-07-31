@@ -41,7 +41,7 @@ resource "azurerm_subnet" "server" {
 }
 
 module "virtual-machine" {
-  source = "github.com/sameeraman/terraform-azurerm-virtual-machine"
+  source = "github.com/sameeraman/terraform-azurerm-virtual-machine?ref=v1.0.0"
 
   virtual_machine_name        = join("", [module.naming.windows_virtual_machine.name,"01"])
   virtual_machine_rg_name     = module.rg1.name
@@ -92,7 +92,7 @@ resource "azurerm_subnet" "server" {
 }
 
 module "virtual-machine" {
-  source = "github.com/sameeraman/terraform-azurerm-virtual-machine"
+  source = "github.com/sameeraman/terraform-azurerm-virtual-machine?ref=v1.0.0"
 
   virtual_machine_name        = join("", [module.naming.virtual_machine.name,"01"])
   virtual_machine_rg_name     = module.rg1.name
