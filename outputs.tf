@@ -13,6 +13,11 @@ output "nic_id" {
   value       = azurerm_network_interface.nic1.id
 }
 
+output "private_ip" {
+  description = "virtual machine allocated private ip"
+  value       = azurerm_network_interface.nic1.private_ip_address
+}
+
 output "vm_admin_username" {
   description = "virtual machine administrator username"
   value       = var.admin_username
