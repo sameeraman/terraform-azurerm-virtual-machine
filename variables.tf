@@ -57,7 +57,7 @@ variable "virtual_machine_os" {
 
 variable "virtual_machine_disk_type" {
   type        = string
-  default     =  "Premium_LRS"
+  default     = "Premium_LRS"
   description = "virtual machine disk type (Premium or Standard)"
   validation {
     condition     = can(regex("Standard_LRS|StandardSSD_LSR|Premium_LRS", var.virtual_machine_disk_type))
