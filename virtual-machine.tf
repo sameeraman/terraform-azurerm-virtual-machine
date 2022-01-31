@@ -22,7 +22,7 @@ resource "azurerm_network_interface" "nic1" {
 
 # Create Windows VM if the OS Type is Windows-SQL or Windows
 resource "azurerm_windows_virtual_machine" "vm1" {
-  count                 = local.windows_sql_count
+  count                 = local.windows_count
   name                  = var.virtual_machine_name
   location              = var.location
   resource_group_name   = data.azurerm_resource_group.vm_rg.name
