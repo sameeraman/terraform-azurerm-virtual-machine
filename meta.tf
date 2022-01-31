@@ -1,6 +1,7 @@
 locals {
   linux_count   = lower(var.virtual_machine_os) == "linux" ? 1 : 0
   windows_count = lower(var.virtual_machine_os) == "windows" ? 1 : 0
+  windows_sql_count = lower(var.virtual_machine_os) == "windows-sql" ? 1 : 0
 }
 
 
