@@ -50,8 +50,8 @@ variable "virtual_machine_os" {
   default     = "linux"
   description = "virtual machine operating system (windows or linux)"
   validation {
-    condition     = can(regex("linux|windows", var.virtual_machine_os))
-    error_message = "ERROR: Operating System must be 'windows' OR 'linux'."
+    condition     = can(regex("linux|windows|windows-sql", var.virtual_machine_os))
+    error_message = "ERROR: Operating System must be 'windows', 'windows-sql' OR 'linux'."
   }
 }
 

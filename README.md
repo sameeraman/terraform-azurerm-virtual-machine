@@ -1,6 +1,6 @@
 # terraform-azurerm-virtual-machine
 This repo provides a terraform module to create a Virtual Machine in Azure. It has the following built in defaults. 
-* Windows 2019 or Ubunutu 16.04 image support, default : Ubuntu
+* Windows 2019, SQL Server 2016 SP1 or Ubunutu 16.04 image support, default : Ubuntu
 * Does not create a public IP by default
 * Small OS disk size by default
 * Uses Premium Disk by default
@@ -51,7 +51,7 @@ module "virtual-machine" {
   virtual_network_name        = azurerm_virtual_network.vnet1.name
   subnet_name                 = azurerm_subnet.server.name
   admin_password              = "myS3cretP@ssword!"
-  virtual_machine_os          = "windows"
+  virtual_machine_os          = "windows" # windows, windows-sql or linux
   # enable_public_ip            = true
 
   depends_on = [module.rg1, azurerm_subnet.server]
@@ -101,7 +101,7 @@ module "virtual-machine" {
   virtual_network_name        = azurerm_virtual_network.vnet1.name
   subnet_name                 = azurerm_subnet.server.name
   admin_password              = "myS3cretP@ssword!"
-  virtual_machine_os          = "windows"   # windows or linux
+  virtual_machine_os          = "windows"   # windows, windows-sql or linux
   enable_public_ip            = true        # default is false
   tags                        = var.tags
 
