@@ -35,7 +35,7 @@ resource "azurerm_windows_virtual_machine" "vm1" {
     publisher = lower(var.virtual_machine_os) == "windows-sql" ? "MicrosoftSQLServer" : "MicrosoftWindowsServer"
     offer     = lower(var.virtual_machine_os) == "windows-sql" ? "SQL2016SP1-WS2016-BYOL" : "WindowsServer"
     sku       = lower(var.virtual_machine_os) == "windows-sql" ? "Standard" : "2019-Datacenter-smalldisk"
-    version   = "latest"
+    version   = lower(var.virtual_machine_os) == "windows-sql" ? "13.2.211109" : "latest"
   }
 
   os_disk {
