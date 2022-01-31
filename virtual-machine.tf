@@ -19,41 +19,8 @@ resource "azurerm_network_interface" "nic1" {
   }
 }
 
-# Create Windows VM if the OS Type is Windows
-resource "azurerm_windows_virtual_machine" "vm1" {
-  count                 = local.windows_count
-  name                  = var.virtual_machine_name
-  location              = var.location
-  resource_group_name   = data.azurerm_resource_group.vm_rg.name
-  network_interface_ids = [azurerm_network_interface.nic1.id]
-  size                  = var.virtual_machine_size
-  admin_username        = var.admin_username
-  admin_password        = var.admin_password
 
-  source_image_reference {
-    publisher = "MicrosoftWindowsServer"
-    offer     = "WindowsServer"
-    sku       = "2019-Datacenter-smalldisk"
-    version   = "latest"
-  }
-
-  os_disk {
-    name                 = "${var.virtual_machine_name}-disk1"
-    caching              = "ReadWrite"
-    storage_account_type = var.virtual_machine_disk_type
-  }
-
-  tags = merge(var.tags, { CreatedOn = timestamp() })
-
-  lifecycle {
-    ignore_changes = [
-      tags["CreatedOn"],
-    ]
-  }
-}
-
-
-# Create Windows SQL VM if the OS Type is Windows-SQL
+# Create Windows VM if the OS Type is Windows-SQL or Windows
 resource "azurerm_windows_virtual_machine" "vm1" {
   count                 = local.windows_sql_count
   name                  = var.virtual_machine_name
@@ -65,9 +32,9 @@ resource "azurerm_windows_virtual_machine" "vm1" {
   admin_password        = var.admin_password
 
   source_image_reference {
-    publisher = "MicrosoftSQLServer"
-    offer     = "SQL2016SP1-WS2016-BYOL"
-    sku       = "Standard"
+    publisher = lower(var.virtual_machine_os) == "windows-sql" ? "MicrosoftSQLServer" : "MicrosoftWindowsServer"
+    offer     = lower(var.virtual_machine_os) == "windows-sql" ? "SQL2016SP1-WS2016-BYOL" : "WindowsServer"
+    sku       = lower(var.virtual_machine_os) == "windows-sql" ? "Standard" : "2019-Datacenter-smalldisk"
     version   = "latest"
   }
 
