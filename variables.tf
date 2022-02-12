@@ -71,6 +71,12 @@ variable "virtual_machine_disk_size" {
   description = "virtual machine disk size in GB (default is 25GB)"
 }
 
+variable "activate_ahb" {
+  type        = bool
+  default     = false
+  description = "Activate Azure Hybrid Use Benefit (Only applicable for windows servers)"
+}
+
 variable "enable_public_ip" {
   type        = bool
   default     = false

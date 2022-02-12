@@ -30,6 +30,7 @@ resource "azurerm_windows_virtual_machine" "vm1" {
   size                  = var.virtual_machine_size
   admin_username        = var.admin_username
   admin_password        = var.admin_password
+  license_type          = var.activate_ahb == true ? "Windows_Server" : "None"
 
   source_image_reference {
     publisher = lower(var.virtual_machine_os) == "windows-sql" ? "MicrosoftSQLServer" : "MicrosoftWindowsServer"
