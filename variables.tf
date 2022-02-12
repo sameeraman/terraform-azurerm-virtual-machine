@@ -77,6 +77,23 @@ variable "enable_public_ip" {
   description = "Create Public IP for the Virtual Machine"
 }
 
+variable "apply_default_nsg" {
+  type        = bool
+  default     = false
+  description = "Apply default Network Security Group on the VM to block internet inbound traffic"
+}
+
+variable "allow_management_ports" {
+  type        = bool
+  default     = false
+  description = "Allow management ports on the NSG to the specified public ip addresses"
+}
+
+variable "allowed_inbound_public_ips" {
+  description = "Allowed Inbound Public IPs for the management ports"
+  type        = string
+}
+
 variable "tags" {
   description = "Tags for categorization"
   type        = map(any)
