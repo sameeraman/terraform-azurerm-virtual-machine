@@ -109,3 +109,39 @@ module "virtual-machine" {
 }
 
 ```
+
+
+
+Example 3 (Only VM block Shown)
+
+```tf
+
+module "virtual-machine" {
+  source = "github.com/sameeraman/terraform-azurerm-virtual-machine?ref=v1.0.0"
+
+  virtual_machine_name       = join("", [module.naming.virtual_machine.name, "sq1"])
+  virtual_machine_rg_name    = module.rg1.name
+  location                   = var.location
+  virtual_network_rg_name    = module.rg1.name
+  virtual_network_name       = azurerm_virtual_network.vnet.name
+  subnet_name                = azurerm_subnet.server_subnet.name
+  admin_password             = var.vm_password
+  virtual_machine_os         = "windows-sql" # windows or linux or windows-sql
+  enable_public_ip           = true
+  apply_default_nsg          = true
+  allow_management_ports     = true
+  allowed_inbound_public_ips = "115.29.253.23,146.34.63.73"
+
+  tags = var.tags
+
+  depends_on = [module.rg1]
+}
+
+```
+
+## Update History Summary
+
+| Release | Testing | Features added                                                                                                                                    |
+|---------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| v1.0.5  | Stable  | Introduced SQL Server Provisioning Support.  Set the OS `virtual_machine_os` variable to `windows-sql`                                            |
+| v1.0.6  | Stable  | Introduced NSG support for VMs. Use `apply_default_nsg`, `allow_management_ports`, `allowed_inbound_public_ips` variable to attach NSGs to the VM |
