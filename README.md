@@ -148,5 +148,6 @@ module "virtual-machine" {
 |---------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------|
 | v1.0.7  | Stable  | Added support to enable Azure Hybrid use Benefit (AHB). Use `activate_ahb` variable to enable AHB. You can turn on/off AHB without destroying the VM |
 | v1.0.6  | Stable  | Introduced NSG support for VMs. Use `apply_default_nsg`, `allow_management_ports`, `allowed_inbound_public_ips` variable to attach NSGs to the VM |
-| v1.0.5  | Stable  | Introduced SQL Server provisioning support.  Set the OS `virtual_machine_os` variable to `windows-sql`                                            |
-
+| v1.0.5  | Stable  | Introduced SQL Server provisioning support.  Set the OS `virtual_machine_os` variable to `windows-sql`  |
+| v1.0.2  | Stable  | Fixed Linux disable_password_authentication issue. Added private IP address output  |
+| v1.0.0  | Stable  | Initial Release |
