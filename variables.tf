@@ -98,6 +98,7 @@ variable "allow_management_ports" {
 variable "allowed_inbound_public_ips" {
   description = "Allowed Inbound Public IPs for the management ports"
   type        = string
+  default     = "0.0.0.0/0"
 }
 
 variable "tags" {
